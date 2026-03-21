@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ferguson Industrial Co. | Case Study Templates</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue: #0C87C1;
+    --blue-dark: #0A6FA0;
+    --blue-deeper: #1B3A5C;
+    --blue-bg: #1C3D5E;
+    --white: #FFFFFF;
+    --off-white: #F5F6F7;
+    --gray-100: #E9EBED;
+    --gray-200: #D2D5D9;
+    --gray-400: #8C9097;
+    --gray-600: #555B63;
+    --gray-800: #2B2F35;
+    --dark: #1A2332;
+    --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --max-w: 1140px;
+    --content-w: 940px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font);
+    background: var(--white);
+    color: var(--gray-800);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ===== VIEW TOGGLE ===== */
+  .view-toggle {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    background: var(--dark); border-bottom: 3px solid var(--blue);
+    padding: 10px 24px; display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .view-toggle span {
+    font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; color: var(--gray-400); margin-right: 10px;
+  }
+  .view-toggle button {
+    font-family: var(--font); font-size: 12px; font-weight: 700;
+    letter-spacing: 0.5px; padding: 8px 22px;
+    border: 1px solid rgba(255,255,255,0.1); background: transparent;
+    color: var(--gray-400); cursor: pointer; transition: all 0.2s;
+  }
+  .view-toggle button:first-of-type { border-radius: 4px 0 0 4px; }
+  .view-toggle button:last-of-type { border-radius: 0 4px 4px 0; }
+  .view-toggle button.active { background: var(--blue); border-color: var(--blue); color: var(--white); }
+  .view { display: none; padding-top: 50px; }
+  .view.active { display: block; }
+
+  /* ===== TOP BAR ===== */
+  .top-bar {
+    background: var(--dark); padding: 8px 40px;
+    display: flex; justify-content: flex-end; align-items: center; gap: 24px;
+  }
+  .top-bar a { font-size: 12px; font-weight: 600; color: var(--white); text-decoration: none; }
+
+  /* ===== HEADER ===== */
+  .site-header {
+    background: var(--white); padding: 0 40px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 72px; border-bottom: 1px solid var(--gray-100);
+    position: sticky; top: 50px; z-index: 50;
+  }
+  .logo { font-size: 22px; font-weight: 800; color: var(--dark); line-height: 1.05; }
+  .logo i { font-style: italic; }
+  .site-header nav { display: flex; align-items: center; gap: 28px; }
+  .site-header nav a {
+    font-size: 13px; font-weight: 600; color: var(--gray-800);
+    text-decoration: none; text-transform: uppercase; letter-spacing: 0.8px; transition: color 0.2s;
+  }
+  .site-header nav a:hover { color: var(--blue); }
+  .btn-blue {
+    display: inline-block; background: var(--blue); color: var(--white) !important;
+    padding: 10px 24px; font-size: 12px; font-weight: 700;
+    letter-spacing: 1px; text-transform: uppercase; text-decoration: none;
+    border: none; cursor: pointer; transition: background 0.2s;
+  }
+  .btn-blue:hover { background: var(--blue-dark); }
+
+  /* ===== TRIANGLE ACCENTS ===== */
+  .tri-tr { position: absolute; top: -20px; right: -20px; width: 120px; height: 120px; background: var(--blue); clip-path: polygon(100% 0, 0 0, 100% 100%); opacity: 0.4; }
+  .tri-bl { position: absolute; bottom: -20px; left: -20px; width: 100px; height: 100px; background: var(--blue); clip-path: polygon(0 100%, 0 0, 100% 100%); opacity: 0.3; }
+  .tri-tr-lg { position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; background: var(--blue); clip-path: polygon(100% 0, 0 0, 100% 100%); opacity: 0.5; }
+
+  /* =========== ARCHIVE VIEW =========== */
+  .archive-hero { background: var(--blue-bg); padding: 64px 40px 56px; position: relative; overflow: hidden; }
+  .archive-hero-inner { max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 2; }
+  .archive-hero h1 { font-size: 44px; font-weight: 800; color: var(--white); margin-bottom: 12px; }
+  .archive-hero p { font-size: 16px; color: rgba(255,255,255,0.7); max-width: 540px; line-height: 1.7; }
+
+  .archive-filters { max-width: var(--max-w); margin: 0 auto; padding: 28px 40px 0; display: flex; gap: 8px; flex-wrap: wrap; }
+  .filter-pill {
+    font-family: var(--font); font-size: 12px; font-weight: 600; padding: 8px 18px;
+    border: 1px solid var(--gray-200); background: var(--white); color: var(--gray-600);
+    cursor: pointer; border-radius: 20px; transition: all 0.2s;
+  }
+  .filter-pill:hover, .filter-pill.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
+
+  .archive-grid { max-width: var(--max-w); margin: 0 auto; padding: 32px 40px 64px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .case-card { background: var(--white); border-radius: 4px; overflow: hidden; border: 1px solid var(--gray-100); transition: box-shadow 0.3s, transform 0.2s; cursor: pointer; }
+  .case-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); transform: translateY(-3px); }
+  .card-img { height: 200px; background: linear-gradient(135deg, var(--blue-bg) 0%, var(--blue-dark) 100%); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .card-img .tri-tr { width: 80px; height: 80px; top: -10px; right: -10px; opacity: 0.3; }
+  .card-img svg { width: 40px; height: 40px; opacity: 0.15; }
+  .card-body { padding: 24px; }
+  .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .card-tags span { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--blue); background: rgba(12,135,193,0.08); padding: 4px 10px; border-radius: 3px; }
+  .card-tags span.industry-tag { color: var(--gray-600); background: var(--gray-100); }
+  .card-body h3 { font-size: 18px; font-weight: 700; color: var(--dark); line-height: 1.3; margin-bottom: 10px; }
+  .card-body > p { font-size: 14px; font-weight: 500; color: var(--gray-600); line-height: 1.65; margin-bottom: 16px; }
+  .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid var(--gray-100); }
+  .card-footer .loc { font-size: 12px; color: var(--gray-400); font-weight: 500; }
+  .card-footer .more { font-size: 12px; font-weight: 700; color: var(--blue); text-transform: uppercase; letter-spacing: 0.6px; text-decoration: none; display: flex; align-items: center; gap: 4px; }
+  .card-footer .more svg { width: 14px; height: 14px; }
+
+  /* =========== SINGLE VIEW =========== */
+  .case-hero { background: var(--blue-bg); padding: 56px 40px 80px; position: relative; overflow: hidden; }
+  .hero-inner { max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 2; }
+  .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 24px; }
+  .breadcrumb a { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.55); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--white); }
+  .breadcrumb .sep { font-size: 11px; color: rgba(255,255,255,0.25); }
+  .breadcrumb .current { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.75); }
+  .case-hero h1 { font-size: 40px; font-weight: 800; color: var(--white); line-height: 1.15; margin-bottom: 16px; max-width: 720px; }
+  .case-hero .tagline { font-size: 18px; font-weight: 500; color: rgba(255,255,255,0.85); max-width: 640px; margin-bottom: 20px; }
+  .case-hero .summary { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 640px; }
+
+  .feat-wrap { max-width: var(--content-w); margin: -48px auto 0; padding: 0 20px; position: relative; z-index: 3; }
+  .feat-img { width: 100%; height: 400px; background: linear-gradient(135deg, var(--blue-bg) 0%, var(--blue-dark) 50%, var(--blue) 100%); display: flex; align-items: center; justify-content: center; border-radius: 4px; box-shadow: 0 16px 48px rgba(0,0,0,0.15); position: relative; overflow: hidden; }
+  .feat-img .tri-tr { width: 140px; height: 140px; opacity: 0.25; }
+  .feat-img span { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.2); letter-spacing: 1.5px; text-transform: uppercase; position: relative; z-index: 1; }
+
+  .case-body { max-width: var(--content-w); margin: 0 auto; padding: 48px 20px 0; }
+
+  /* Client Profile */
+  .client-profile { background: var(--off-white); border-left: 4px solid var(--blue); border-radius: 0 4px 4px 0; padding: 32px 36px; margin-bottom: 48px; }
+  .profile-row { display: grid; gap: 24px; }
+  .profile-row-top { grid-template-columns: repeat(3, 1fr); padding-bottom: 20px; border-bottom: 1px solid var(--gray-200); margin-bottom: 20px; }
+  .profile-row-bottom { grid-template-columns: repeat(3, 1fr); }
+  .profile-field label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray-400); margin-bottom: 6px; }
+  .profile-field span { font-size: 14px; font-weight: 600; color: var(--gray-800); line-height: 1.4; }
+  .profile-field span a { color: var(--blue); text-decoration: none; border-bottom: 1px solid rgba(12,135,193,0.25); transition: border-color 0.2s; }
+  .profile-field span a:hover { border-color: var(--blue); }
+
+  /* Sections */
+  .sec-heading { font-size: 24px; font-weight: 800; color: var(--dark); position: relative; padding-bottom: 14px; margin-bottom: 20px; }
+  .sec-heading::after { content: ''; position: absolute; bottom: 0; left: 0; width: 40px; height: 3px; background: var(--blue); }
+  .body-text { font-size: 16px; font-weight: 500; color: var(--gray-600); line-height: 1.85; }
+  .body-text + .body-text { margin-top: 20px; }
+  .sub-heading { font-size: 18px; font-weight: 700; color: var(--blue-deeper); margin-top: 32px; margin-bottom: 10px; }
+  .section { margin-bottom: 48px; }
+  .section-divider { border: none; border-top: 1px solid var(--gray-100); margin: 0 0 48px; }
+
+  /* Stats */
+  .stats-band { background: var(--blue-bg); border-radius: 4px; padding: 40px 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 28px; position: relative; overflow: hidden; }
+  .stats-band .tri-tr { width: 100px; height: 100px; opacity: 0.25; }
+  .stats-band .tri-bl { width: 80px; height: 80px; opacity: 0.2; }
+  .stat { text-align: center; position: relative; z-index: 1; }
+  .stat .number { font-size: 36px; font-weight: 800; color: var(--white); line-height: 1; margin-bottom: 6px; }
+  .stat .label { font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.6); }
+
+  /* Gallery */
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 16px; }
+  .gallery-thumb { height: 140px; background: linear-gradient(135deg, var(--gray-200) 0%, var(--gray-100) 100%); border-radius: 4px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: opacity 0.2s; }
+  .gallery-thumb:hover { opacity: 0.8; }
+  .gallery-thumb span { font-size: 10px; font-weight: 600; color: var(--gray-400); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* Service tags */
+  .service-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .service-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--blue-dark); background: rgba(12,135,193,0.06); border: 1px solid rgba(12,135,193,0.15); padding: 10px 18px; border-radius: 4px; text-decoration: none; transition: all 0.2s; }
+  .service-tag:hover { background: var(--blue); color: var(--white); border-color: var(--blue); }
+  .service-tag svg { width: 16px; height: 16px; flex-shrink: 0; }
+
+  /* CTA */
+  .cta-section { background: var(--blue-bg); border-radius: 4px; padding: 56px 48px; text-align: center; position: relative; overflow: hidden; }
+  .cta-section h2 { font-size: 28px; font-weight: 800; color: var(--white); margin-bottom: 10px; position: relative; z-index: 1; }
+  .cta-section p { font-size: 16px; color: rgba(255,255,255,0.65); margin-bottom: 28px; position: relative; z-index: 1; }
+  .cta-section .btn-blue { position: relative; z-index: 1; padding: 14px 36px; font-size: 13px; }
+
+  /* Footer */
+  .site-footer { background: var(--dark); margin-top: 64px; padding: 56px 40px 32px; }
+  .footer-inner { max-width: var(--max-w); margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 48px; }
+  .footer-brand .f-logo { font-size: 20px; font-weight: 800; color: var(--white); line-height: 1.05; margin-bottom: 16px; }
+  .footer-brand .f-logo i { font-style: italic; }
+  .footer-brand p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 16px; }
+  .footer-brand .address { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+  .footer-brand .phone { font-size: 14px; font-weight: 700; color: var(--white); text-decoration: none; display: inline-block; margin-top: 8px; }
+  .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 16px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 8px; }
+  .footer-col ul a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: color 0.2s; }
+  .footer-col ul a:hover { color: var(--white); }
+  .footer-bottom { max-width: var(--max-w); margin: 40px auto 0; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p, .footer-bottom a { font-size: 12px; color: rgba(255,255,255,0.3); text-decoration: none; }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .site-header nav { display: none; }
+    .archive-hero h1, .case-hero h1 { font-size: 30px; }
+    .archive-grid { grid-template-columns: 1fr; }
+    .stats-band { grid-template-columns: 1fr; gap: 20px; padding: 32px 24px; }
+    .profile-row-top, .profile-row-bottom { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    .feat-img { height: 240px; }
+    .archive-grid, .archive-filters, .case-hero, .archive-hero { padding-left: 20px; padding-right: 20px; }
+    .top-bar { padding: 8px 20px; }
+    .site-header { padding: 0 20px; }
+    .site-footer { padding: 40px 20px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="view-toggle">
+  <span>Template</span>
+  <button class="active" onclick="toggle('archive',this)">Archive</button>
+  <button onclick="toggle('single',this)">Single</button>
+</div>
+
+<!-- ===== ARCHIVE ===== -->
+<div id="archive" class="view active">
+  <div class="top-bar"><a href="#">(662) 895-5595</a><a href="#">Reviews</a></div>
+  <header class="site-header">
+    <div class="logo">Ferguson<br><i>Industrial Co.</i></div>
+    <nav><a href="#">Hydraulics</a><a href="#">Machining</a><a href="#">Maintenance</a><a href="#">Engineering</a><a href="#">More Services</a><a href="#">Service Areas</a><a href="#">About</a><a href="#" class="btn-blue">Contact Us</a></nav>
+  </header>
+
+  <section class="archive-hero"><div class="tri-tr-lg"></div><div class="archive-hero-inner"><h1>Case Studies</h1><p>Real projects. Verified results. See how Ferguson Industrial Co. keeps facilities running across the Mid-South and Southeast.</p></div></section>
+
+  <div class="archive-filters">
+    <button class="filter-pill active">All Projects</button>
+    <button class="filter-pill">Hydraulic Repair</button>
+    <button class="filter-pill">CNC Machining</button>
+    <button class="filter-pill">Welding &amp; Fabrication</button>
+    <button class="filter-pill">Plant Maintenance</button>
+    <button class="filter-pill">Automation</button>
+    <button class="filter-pill">Machinery Rigging</button>
+  </div>
+
+  <div class="archive-grid">
+    <article class="case-card" onclick="toggle('single',document.querySelectorAll('.view-toggle button')[1])"><div class="card-img"><div class="tri-tr"></div><svg viewBox="0 0 24 24" fill="none" stroke="white"><circle cx="12" cy="12" r="3" stroke-width="1.5"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke-width="1.5"/></svg></div><div class="card-body"><div class="card-tags"><span>Hydraulic Repair</span><span>CNC Machining</span><span class="industry-tag">Food Processing</span></div><h3>Hydraulic Press Rebuild for Memphis Food Processing Facility</h3><p>Ferguson diagnosed and rebuilt a failing hydraulic press, restoring full production in under 48 hours before a critical shipping deadline.</p><div class="card-footer"><span class="loc">Memphis, TN</span><a href="#" class="more">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></article>
+
+    <article class="case-card"><div class="card-img"><div class="tri-tr"></div><svg viewBox="0 0 24 24" fill="none" stroke="white"><rect x="2" y="6" width="20" height="12" rx="2" stroke-width="1.5"/><path d="M12 6V2M8 6V4M16 6V4" stroke-width="1.5"/></svg></div><div class="card-body"><div class="card-tags"><span>CNC Machining</span><span class="industry-tag">Food Processing</span></div><h3>Emergency Shaft Fabrication for Southaven Bottling Plant</h3><p>A critical drive shaft failure threatened a 72-hour stoppage. Ferguson machined a replacement from bar stock and delivered same day.</p><div class="card-footer"><span class="loc">Southaven, MS</span><a href="#" class="more">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></article>
+
+    <article class="case-card"><div class="card-img"><div class="tri-tr"></div><svg viewBox="0 0 24 24" fill="none" stroke="white"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" stroke-width="1.5"/></svg></div><div class="card-body"><div class="card-tags"><span>Plant Maintenance</span><span>Welding</span><span class="industry-tag">Logistics</span></div><h3>24/7 Maintenance Contract for Olive Branch Distribution Center</h3><p>An ongoing maintenance partnership reduced unplanned downtime by 40% in the first year through preventive service and rapid field response.</p><div class="card-footer"><span class="loc">Olive Branch, MS</span><a href="#" class="more">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></article>
+
+    <article class="case-card"><div class="card-img"><div class="tri-tr"></div><svg viewBox="0 0 24 24" fill="none" stroke="white"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke-width="1.5"/></svg></div><div class="card-body"><div class="card-tags"><span>Machinery Rigging</span><span class="industry-tag">Manufacturing</span></div><h3>40,000 lb CNC Lathe Installation at Nashville Manufacturing Plant</h3><p>Ferguson rigged and positioned a 40,000-pound CNC lathe through a 12-foot doorway with zero structural modification.</p><div class="card-footer"><span class="loc">Nashville, TN</span><a href="#" class="more">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></article>
+
+    <article class="case-card"><div class="card-img"><div class="tri-tr"></div><svg viewBox="0 0 24 24" fill="none" stroke="white"><path d="M12 2L2 7l10 5 10-5-10-5z" stroke-width="1.5"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5" stroke-width="1.5"/></svg></div><div class="card-body"><div class="card-tags"><span>Automation</span><span>Engineering</span><span class="industry-tag">Steel &amp; Metals</span></div><h3>Conveyor Automation Retrofit for Birmingham Steel Processor</h3><p>Ferguson designed and installed an automated sorting system that increased throughput 25% and eliminated a manual sorting station.</p><div class="card-footer"><span class="loc">Birmingham, AL</span><a href="#" class="more">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></article>
+
+    <article class="case-card"><div class="card-img"><div class="tri-tr"></div><svg viewBox="0 0 24 24" fill="none" stroke="white"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" stroke-width="1.5"/><line x1="4" y1="22" x2="4" y2="15" stroke-width="1.5"/></svg></div><div class="card-body"><div class="card-tags"><span>Welding &amp; Fabrication</span><span class="industry-tag">Agriculture</span></div><h3>Structural Steel Repair for Little Rock Grain Elevator</h3><p>On-site welding and fabrication restored load-bearing structures damaged during a storm, completed in a 4-day shutdown window.</p><div class="card-footer"><span class="loc">Little Rock, AR</span><a href="#" class="more">View <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div></article>
+  </div>
+
+  <div style="max-width:var(--max-w);margin:0 auto;padding:0 40px 64px;">
+    <div class="cta-section"><div class="tri-tr"></div><div class="tri-bl"></div><h2>Ready to Talk About Your Project?</h2><p>Tell us what you need. Our team responds fast.</p><a href="#" class="btn-blue">Contact Us</a></div>
+  </div>
+
+  <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><div class="f-logo">Ferguson<br><i>Industrial Co.</i></div><p>From industrial maintenance to precision engineering, built to support your business.</p><div class="address">8222 Industrial Dr.<br>Olive Branch, Mississippi 38654</div><a href="#" class="phone">(662) 895-5595</a></div><div class="footer-col"><h4>Services</h4><ul><li><a href="#">Hydraulic Maintenance</a></li><li><a href="#">Hydraulic Repair</a></li><li><a href="#">Welding &amp; Fabrication</a></li><li><a href="#">Industrial Machine Shop</a></li><li><a href="#">Air Compressor Services</a></li><li><a href="#">Plant Maintenance</a></li><li><a href="#">Automation &amp; Robotics</a></li><li><a href="#">Design and Engineering</a></li><li><a href="#">Machinery Rigging</a></li></ul></div><div class="footer-col"><h4>Areas Served</h4><ul><li><a href="#">Tennessee</a></li><li><a href="#">Mississippi</a></li><li><a href="#">Arkansas</a></li><li><a href="#">Alabama</a></li><li><a href="#">Georgia</a></li></ul></div></div><div class="footer-bottom"><p>&copy; 2026 Ferguson Industrial Co. | All Rights Reserved</p><a href="#">Website by New Urban Media</a></div></footer>
+</div>
+
+<!-- ===== SINGLE ===== -->
+<div id="single" class="view">
+  <div class="top-bar"><a href="#">(662) 895-5595</a><a href="#">Reviews</a></div>
+  <header class="site-header">
+    <div class="logo">Ferguson<br><i>Industrial Co.</i></div>
+    <nav><a href="#">Hydraulics</a><a href="#">Machining</a><a href="#">Maintenance</a><a href="#">Engineering</a><a href="#">More Services</a><a href="#">Service Areas</a><a href="#">About</a><a href="#" class="btn-blue">Contact Us</a></nav>
+  </header>
+
+  <section class="case-hero">
+    <div class="tri-tr-lg"></div>
+    <div class="hero-inner">
+      <div class="breadcrumb"><a href="#" onclick="toggle('archive',document.querySelectorAll('.view-toggle button')[0]);return false;">Home</a><span class="sep">›</span><a href="#" onclick="toggle('archive',document.querySelectorAll('.view-toggle button')[0]);return false;">Case Studies</a><span class="sep">›</span><span class="current">Hydraulic Press Rebuild</span></div>
+      <h1>Hydraulic Press Rebuild for Memphis Food Processing Facility</h1>
+      <p class="tagline">Emergency hydraulic system rebuild restored full production in under 48 hours</p>
+      <p class="summary">Ferguson Industrial Co. diagnosed and rebuilt a failing hydraulic press system at a Memphis food packaging plant, eliminating recurring pressure loss and restoring the line to full output before a critical shipping deadline.</p>
+    </div>
+  </section>
+
+  <div class="feat-wrap"><div class="feat-img"><div class="tri-tr"></div><span>Featured Project Photo</span></div></div>
+
+  <div class="case-body">
+
+    <div class="client-profile">
+      <div class="profile-row profile-row-top">
+        <div class="profile-field"><label>Client</label><span>Confidential</span></div>
+        <div class="profile-field"><label>Industry</label><span><a href="#">Food Processing</a></span></div>
+        <div class="profile-field"><label>Location</label><span>Memphis, Tennessee</span></div>
+      </div>
+      <div class="profile-row profile-row-bottom">
+        <div class="profile-field"><label>Facility Type</label><span>Packaging &amp; Distribution Plant</span></div>
+        <div class="profile-field"><label>Relationship</label><span>Now Under Maintenance Agreement</span></div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2 class="sec-heading">The Problem</h2>
+      <p class="body-text">A 200-ton hydraulic press on the facility's primary packaging line began losing pressure intermittently during peak production shifts. The plant's maintenance team replaced seals twice in 10 days, but pressure drops continued. Each failure shut the line down for 2 to 4 hours. With a major retail shipment deadline 5 days out, the plant manager needed the root cause found and fixed.</p>
+      <h3 class="sub-heading">What Was at Stake</h3>
+      <p class="body-text">The packaging line accounted for roughly 60% of the facility's weekly output. Every unplanned shutdown cost the plant an estimated $8,500 in lost production per hour. A missed shipment deadline carried contractual penalties and risked the client's standing with a national retail partner.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="section">
+      <h2 class="sec-heading">The Approach</h2>
+      <p class="body-text">Ferguson's field service team arrived on-site within 4 hours of the initial call. Rather than replacing seals again, the team pulled the hydraulic cylinder for full inspection at Ferguson's Olive Branch shop. Diagnostic testing revealed a scored cylinder bore and a hairline crack in the manifold block, both invisible during in-place seal swaps.</p>
+      <h3 class="sub-heading">Scope of Work</h3>
+      <p class="body-text">The team re-honed the cylinder bore to spec, fabricated a replacement manifold block using CNC machining, replaced all seals and fittings with Parker components, and pressure-tested the rebuilt assembly to 3,200 PSI before reinstallation. A two-person crew returned to the plant for reinstallation and ran the press through a full production cycle to verify performance under load.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="section">
+      <h2 class="sec-heading">The Result</h2>
+      <p class="body-text">The rebuilt press was back online 43 hours after the initial service call. The line met its shipping deadline with a day to spare. In the 90 days following the rebuild, the press logged zero unplanned shutdowns. The plant operations director signed an ongoing maintenance agreement within 30 days of the completed repair.</p>
+      <div class="stats-band"><div class="tri-tr"></div><div class="tri-bl"></div><div class="stat"><div class="number">&lt;48 hrs</div><div class="label">Call to Full Production</div></div><div class="stat"><div class="number">30+</div><div class="label">Hours of Downtime Recovered</div></div><div class="stat"><div class="number">0</div><div class="label">Shutdowns in 90 Days</div></div></div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="section">
+      <h2 class="sec-heading">Project Photos</h2>
+      <p class="body-text">Documentation from the hydraulic press rebuild, including cylinder inspection, manifold fabrication, and on-site reinstallation.</p>
+      <div class="gallery-grid"><div class="gallery-thumb"><span>Photo 1</span></div><div class="gallery-thumb"><span>Photo 2</span></div><div class="gallery-thumb"><span>Photo 3</span></div></div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div class="section">
+      <h2 class="sec-heading">Services Provided</h2>
+      <p class="body-text">This project involved capabilities across three Ferguson Industrial service lines.</p>
+      <div class="service-tags">
+        <a href="#" class="service-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>Hydraulic Maintenance &amp; Repair</a>
+        <a href="#" class="service-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M12 6V2M8 6V4M16 6V4"/></svg>CNC Machining</a>
+        <a href="#" class="service-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>Plant Maintenance</a>
+      </div>
+    </div>
+
+    <div class="cta-section"><div class="tri-tr"></div><div class="tri-bl"></div><h2>Have a Similar Challenge?</h2><p>Tell us what you're dealing with. Our team responds fast.</p><a href="#" class="btn-blue">Contact Us</a></div>
+  </div>
+
+  <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><div class="f-logo">Ferguson<br><i>Industrial Co.</i></div><p>From industrial maintenance to precision engineering, built to support your business.</p><div class="address">8222 Industrial Dr.<br>Olive Branch, Mississippi 38654</div><a href="#" class="phone">(662) 895-5595</a></div><div class="footer-col"><h4>Services</h4><ul><li><a href="#">Hydraulic Maintenance</a></li><li><a href="#">Hydraulic Repair</a></li><li><a href="#">Welding &amp; Fabrication</a></li><li><a href="#">Industrial Machine Shop</a></li><li><a href="#">Air Compressor Services</a></li><li><a href="#">Plant Maintenance</a></li><li><a href="#">Automation &amp; Robotics</a></li><li><a href="#">Design and Engineering</a></li><li><a href="#">Machinery Rigging</a></li></ul></div><div class="footer-col"><h4>Areas Served</h4><ul><li><a href="#">Tennessee</a></li><li><a href="#">Mississippi</a></li><li><a href="#">Arkansas</a></li><li><a href="#">Alabama</a></li><li><a href="#">Georgia</a></li></ul></div></div><div class="footer-bottom"><p>&copy; 2026 Ferguson Industrial Co. | All Rights Reserved</p><a href="#">Website by New Urban Media</a></div></footer>
+</div>
+
+<script>
+function toggle(id, btn) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.view-toggle button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
