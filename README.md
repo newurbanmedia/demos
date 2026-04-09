@@ -1,13 +1,15 @@
-# Demos
+# demos
+
+## Demos
 
 <!-- DIRECTORY_START -->
-- [Afro-Latino Week 2027 - Visual Presentation (English)](al-1.html)
-- [Afro-Latino Week 2027 — Presentacion Visual (Espanol)](al-2.html)
-- [Día de los Muertos 2026 — Design Presentation](ddlm.html)
-- [Ferguson Industrial Co. | Case Study Templates](ferguson-case-study-templates%20(3).html)
-- [The Last Christmas — Visual Identity | Cazateatro 2026](lc1.html)
-- [The Last Christmas — Identidad Visual | Cazateatro 2026](lc2.html)
-- [Latin Fest 901 — Visual Identity 2026](lf-1.html)
-- [Latin Fest 901 · 2026 — Design Presentation](lf-2.html)
-- [NFC Investments, LLC — Memphis, Tennessee](nfc.html)
+- [Afro-Latino Week 2027 - Visual Presentation (English)](./al-1.html)
+- [Afro-Latino Week 2027 — Presentacion Visual (Espanol)](./al-2.html)
+- [Día de los Muertos 2026 — Design Presentation](./ddlm.html)
+- [Ferguson Industrial Co. — Case Study Templates](./ferguson-case-study-templates%20(3).html)
+- [The Last Christmas — Visual Identity, Cazateatro 2026](./lc1.html)
+- [The Last Christmas — Identidad Visual, Cazateatro 2026](./lc2.html)
+- [Latin Fest 901 — Visual Identity 2026](./lf-1.html)
+- [Latin Fest 901 · 2026 — Design Presentation](./lf-2.html)
+- [NFC Investments, LLC — Memphis, Tennessee](./nfc.html)
 <!-- DIRECTORY_END -->

@@ -3,14 +3,14 @@ const path = require('path');
 
 const root = process.cwd();
 const readmePath = path.join(root, 'README.md');
+const startMarker = '<!-- DIRECTORY_START -->';
+const endMarker = '<!-- DIRECTORY_END -->';
 
-// Read each HTML file and extract its <title> tag
 function getTitle(filePath) {
   try {
     const content = fs.readFileSync(filePath, 'utf8');
     const match = content.match(/<title>([^<]+)<\/title>/i);
     if (match) {
-      // Decode HTML entities
       return match[1]
         .replace(/&mdash;/g, '\u2014')
         .replace(/&ndash;/g, '\u2013')
@@ -18,6 +18,7 @@ function getTitle(filePath) {
         .replace(/&lt;/g, '<')
         .replace(/&gt;/g, '>')
         .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(code))
+        .replace(/\|/g, ',')
         .trim();
     }
   } catch (e) {
@@ -26,23 +27,29 @@ function getTitle(filePath) {
   return null;
 }
 
-const files = fs.readdirSync(root)
-  .filter(file => file.endsWith('.html'))
+const files = fs.readdirSync(root, { withFileTypes: true })
+  .filter(entry => entry.isFile() && entry.name.endsWith('.html'))
+  .map(entry => entry.name)
   .sort((a, b) => a.localeCompare(b));
 
-const list = files
-  .map(file => {
-    const title = getTitle(path.join(root, file)) || file.replace('.html', '');
-    const encoded = file.replace(/ /g, '%20');
-    return `- [${title}](${encoded})`;
-  })
-  .join('\n');
+const list = files.length
+  ? files
+      .map(file => {
+        const title = getTitle(path.join(root, file)) || file.replace(/\.html$/i, '');
+        return `- [${title}](./${encodeURI(file)})`;
+      })
+      .join('\n')
+  : '_No HTML demos found in this folder._';
 
 const readme = fs.readFileSync(readmePath, 'utf8');
 
+if (!readme.includes(startMarker) || !readme.includes(endMarker)) {
+  throw new Error('README.md must contain DIRECTORY_START and DIRECTORY_END markers.');
+}
+
 const updated = readme.replace(
-  /<!-- DIRECTORY_START -->[\s\S]*<!-- DIRECTORY_END -->/,
-  `<!-- DIRECTORY_START -->\n${list}\n<!-- DIRECTORY_END -->`
+  new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`),
+  `${startMarker}\n${list}\n${endMarker}`
 );
 
 fs.writeFileSync(readmePath, updated);
