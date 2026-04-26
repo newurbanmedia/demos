@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sessions &amp; Pricing — Works by Love</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&family=Inter:wght@400;500;600&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=2">
+<style>
+  .hero { padding: 7rem 0 3rem; text-align: center; }
+  .hero .container { max-width: 820px; }
+  .hero .eyebrow { margin-bottom: 1.5rem; }
+  .hero h1 { margin-bottom: 1.75rem; }
+  .hero-sub { font-size: 1.22rem; margin: 0 auto; max-width: 56ch; line-height: 1.55; }
+
+  .session-types { padding: 3rem 0 6rem; }
+  .session-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    max-width: 1080px; margin: 0 auto;
+  }
+  @media (max-width: 800px) { .session-grid { grid-template-columns: 1fr; } }
+  .session-card {
+    background: var(--soft-white);
+    border: 1px solid var(--rule-soft);
+    border-radius: 6px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  .session-card:hover {
+    border-color: var(--rule);
+    box-shadow: var(--shadow-soft);
+    transform: translateY(-2px);
+  }
+  .session-card .label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    color: var(--slate);
+    margin-bottom: 1.25rem;
+  }
+  .session-card h3 {
+    font-style: italic;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-variation-settings: "SOFT" 80, "WONK" 1, "opsz" 80;
+  }
+  .price-line {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .price-line .amount {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 3.4rem;
+    color: var(--forest);
+    line-height: 1;
+    font-variation-settings: "SOFT" 80, "WONK" 1, "opsz" 144;
+    font-weight: 380;
+  }
+  .price-line .amount sup { font-size: 1.4rem; vertical-align: super; }
+  .price-line .per {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--sage);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+  }
+  .session-card p { font-size: 1rem; margin-bottom: 1.25rem; }
+  .session-card ul.features {
+    list-style: none;
+    margin: 1.25rem 0 0;
+  }
+  .session-card ul.features li {
+    padding: 0.7rem 0 0.7rem 1.5rem;
+    border-top: 1px solid var(--rule-soft);
+    font-size: 0.96rem;
+    color: var(--charcoal);
+    position: relative;
+  }
+  .session-card ul.features li::before {
+    content: "·";
+    position: absolute;
+    left: 0;
+    color: var(--moss);
+    font-weight: 700;
+    font-size: 1.4rem;
+    line-height: 0.8;
+    top: 0.85rem;
+  }
+
+  .typical { background: var(--soft-white); border-top: 1px solid var(--rule-soft); border-bottom: 1px solid var(--rule-soft); }
+
+  .what-included { background: var(--cream); }
+  .included-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem 4rem;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  @media (max-width: 800px) { .included-grid { grid-template-columns: 1fr; gap: 2rem; } }
+  .included-grid .item {
+    border-top: 1px solid var(--rule-soft);
+    padding-top: 1.5rem;
+  }
+  .included-grid .item h4 {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.4rem;
+    color: var(--forest);
+    margin-bottom: 0.6rem;
+    font-variation-settings: "SOFT" 80, "WONK" 1, "opsz" 36;
+    font-weight: 380;
+  }
+  .included-grid .item p { font-size: 1rem; }
+
+  .sliding {
+    background: var(--forest);
+    color: var(--cream);
+    position: relative;
+    overflow: hidden;
+  }
+  .sliding-inner { max-width: 780px; margin: 0 auto; text-align: center; position: relative; z-index: 1; }
+  .sliding h2 { color: var(--cream); margin: 1.25rem 0 1.5rem; }
+  .sliding p {
+    color: rgba(244, 239, 229, 0.86);
+    font-size: 1.125rem;
+    margin: 0 auto 1.25rem;
+    max-width: 56ch;
+  }
+
+  .cta-section { text-align: center; }
+  .cta-inner { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+  .cta-section h2 { margin: 1.25rem 0 1.5rem; }
+  .cta-section p { font-size: 1.125rem; margin: 0 auto 2.5rem; max-width: 54ch; }
+  .cta-options { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="home.html" class="logo">Works <span class="by">by</span> Love</a>
+    <ul class="nav-links">
+      <li><a href="home.html#audience">The Work</a></li>
+      <li><a href="about.html">About Edie</a></li>
+      <li><a href="pricing.html" class="current">Sessions</a></li>
+      <li><a href="faq.html">Questions</a></li>
+      <li><a href="contact.html" class="nav-cta">Reach Edie</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="eyebrow centered">Sessions &amp; investment</span>
+    <h1>Two hours. <span class="accent-italic">One rate.</span></h1>
+    <p class="hero-sub">Sessions are billed by the hour. Most run two hours, which is enough to make real progress without overwhelming the room. There are two formats — in your home, or on Zoom.</p>
+  </div>
+</header>
+
+<section class="session-types">
+  <div class="container">
+    <div class="session-grid">
+
+      <div class="session-card">
+        <div class="label">Format One · In your home</div>
+        <h3>The home session.</h3>
+        <div class="price-line">
+          <div class="amount"><sup>$</sup>100</div>
+          <div class="per">per hour</div>
+        </div>
+        <p>Edie comes to your house. She physically handles items when you want her to, and most clients do. She can transport, donate, or dispose of items you decide to release.</p>
+        <ul class="features">
+          <li>Two hours per session</li>
+          <li>Memphis metro included; farther by arrangement</li>
+          <li>Edie can handle and remove items at your direction</li>
+          <li>No camera, no audience, no agenda</li>
+        </ul>
+      </div>
+
+      <div class="session-card">
+        <div class="label">Format Two · On Zoom</div>
+        <h3>The remote session.</h3>
+        <div class="price-line">
+          <div class="amount"><sup>$</sup>75</div>
+          <div class="per">per hour</div>
+        </div>
+        <p>Edie meets you over video. You hold the camera. She talks you through it. The privacy of a closed door you control. Tested with clients across North America.</p>
+        <ul class="features">
+          <li>Two hours per session</li>
+          <li>Available anywhere in North America</li>
+          <li>You decide what Edie sees, and when</li>
+          <li>Tablet-and-phone setups welcome</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="typical">
+  <div class="container">
+    <div class="slab">
+      <div>
+        <span class="eyebrow">A typical engagement</span>
+        <h2 style="margin-top: 1rem;">How much it usually <em class="soft">takes.</em></h2>
+      </div>
+      <div class="slab-body">
+        <ul class="indexed">
+          <li><strong style="color:var(--forest);">A single closet, a single shelf, or a single box</strong> tends to take one or two sessions. Some people stop here.</li>
+          <li><strong style="color:var(--forest);">A full room</strong> — the spare bedroom, the garage, the office — usually takes three to six sessions over a few months. Real progress shows up between visits.</li>
+          <li><strong style="color:var(--forest);">A whole house</strong> is a longer engagement. Edie sets a steady cadence with you. There is no obligation to continue past any session.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="what-included">
+  <div class="container">
+    <div class="section-head" style="text-align:center; margin: 0 auto 4rem;">
+      <span class="eyebrow centered">What is included</span>
+      <h2 style="margin-top: 1rem;">In every session, regardless <em class="soft">of format.</em></h2>
+    </div>
+    <div class="included-grid">
+      <div class="item">
+        <h4>The 15-minute introduction</h4>
+        <p>A no-charge phone call before any session is booked. You do not have to explain anything in advance. You can start by saying you read the site.</p>
+      </div>
+      <div class="item">
+        <h4>A specific focus</h4>
+        <p>One closet. One box. One drawer. One question. The work is concrete, never abstract. Most progress comes from working narrowly, not broadly.</p>
+      </div>
+      <div class="item">
+        <h4>Decisions made in the room</h4>
+        <p>Edie does not let the decision wait. The grief is part of the work. So is keeping the conversation moving toward what stays and what goes.</p>
+      </div>
+      <div class="item">
+        <h4>Your authority, every time</h4>
+        <p>You decide what stays and what goes. You can stop a session at any point. Nothing leaves your home without your call.</p>
+      </div>
+      <div class="item">
+        <h4>No camera, no record</h4>
+        <p>Edie does not photograph anything. There is no before-and-after. There is no marketing pulled from your home or your story.</p>
+      </div>
+      <div class="item">
+        <h4>Removal at your direction</h4>
+        <p>For home sessions, Edie can transport items to donation, a family member, or disposal — whatever you have decided.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section sliding">
+  <div class="container">
+    <div class="sliding-inner">
+      <span class="eyebrow centered">Sliding scale</span>
+      <h2>If cost is the only thing in the way, <em class="soft">say so.</em></h2>
+      <p>Edie holds a small number of sliding-scale spots at any given time. There is no application form and no income proof. You mention it on the introduction call, and you and Edie agree on a rate.</p>
+      <p>You will not be asked to justify the request, and the work itself is identical at any rate.</p>
+      <div style="margin-top: 2rem;">
+        <a href="contact.html" class="btn btn-light">Start with the introduction <span class="btn-arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section cta-section" style="background: var(--forest-deep);">
+  <div class="container">
+    <div class="cta-inner">
+      <span class="eyebrow centered">Ready to begin</span>
+      <h2>Book the introduction.</h2>
+      <p>The first conversation is fifteen minutes by phone. No charge, no commitment to book a session afterward.</p>
+      <div class="cta-options">
+        <a href="tel:9015983343" class="btn btn-light">Call 901.598.3343</a>
+        <a href="contact.html#message-form" class="btn btn-outline-light">Send a message <span class="btn-arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="home.html" class="logo">Works <span class="by">by</span> Love</a>
+        <p>Grief counseling with a practical application. In your home in Memphis, or on Zoom anywhere in North America.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="home.html#audience">The Work</a></li>
+          <li><a href="about.html">About Edie</a></li>
+          <li><a href="pricing.html">Sessions</a></li>
+          <li><a href="faq.html">Questions</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Reach Edie</h4>
+        <ul>
+          <li><a href="tel:9015983343">901.598.3343</a></li>
+          <li><a href="contact.html">Book a 15-minute introduction</a></li>
+          <li><a href="contact.html#message-form">Send a message</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <span>© 2026 Works by Love · Edith Love</span>
+      <span>Memphis, Tennessee · <a href="privacy.html">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+</script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="assets/tweaks-panel.jsx"></script>
+<script type="text/babel" src="assets/tweaks-app.jsx"></script>
+
+</body>
+</html>

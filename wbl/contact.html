@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Works by Love</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&family=Inter:wght@400;500;600&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=2">
+<style>
+  .hero { padding: 7rem 0 4rem; text-align: center; }
+  .hero .container { max-width: 800px; }
+  .hero .eyebrow { margin-bottom: 1.5rem; }
+  .hero h1 { margin-bottom: 1.75rem; }
+  .hero-sub { font-size: 1.22rem; margin: 0 auto; max-width: 56ch; line-height: 1.55; }
+
+  .options { padding: 2rem 0 5rem; }
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px) { .options-grid { grid-template-columns: 1fr; } }
+  .option-card {
+    background: var(--soft-white);
+    border: 1px solid var(--rule-soft);
+    border-radius: 6px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .option-card:hover {
+    border-color: var(--moss);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+  }
+  .option-icon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1.5rem;
+    color: var(--moss);
+    stroke-width: 1.4;
+  }
+  .option-card h3 { margin-bottom: 1rem; font-variation-settings: "SOFT" 30; }
+  .option-card p {
+    font-size: 0.98rem;
+    color: var(--charcoal);
+    margin: 0 auto 1.5rem;
+    max-width: 28ch;
+  }
+  .option-action {
+    margin-top: auto;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.15rem;
+    color: var(--moss);
+    border-bottom: 1px solid var(--moss);
+    padding-bottom: 2px;
+    transition: color 0.2s;
+    font-variation-settings: "SOFT" 60, "WONK" 1;
+  }
+  .option-action:hover { color: var(--moss-deep); border-bottom-color: var(--moss-deep); }
+
+  .form-section {
+    background: var(--soft-white);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+  }
+  .form-section .section-head { text-align: center; max-width: 600px; margin: 0 auto 3rem; }
+  .form-section .section-head .eyebrow { margin-bottom: 1.25rem; }
+  .form-section .section-head h2 { margin-bottom: 1rem; }
+  .form-section .section-head p { margin: 0 auto; }
+
+  .contact-form {
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--cream);
+    padding: 3rem;
+    border-radius: 6px;
+    border: 1px solid var(--rule-soft);
+  }
+  @media (max-width: 600px) { .contact-form { padding: 2rem 1.5rem; } }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; gap: 0; } }
+  .form-group { margin-bottom: 1.5rem; }
+  .form-label {
+    display: block;
+    font-family: var(--body);
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--charcoal);
+    margin-bottom: 0.5rem;
+  }
+  .form-label .optional {
+    color: var(--sage);
+    font-weight: 400;
+    font-size: 0.85rem;
+    font-style: italic;
+  }
+  .form-input::placeholder, .form-textarea::placeholder {
+    color: rgba(122, 132, 117, 0.55);
+    font-style: italic;
+  }
+  .form-input, .form-textarea, .form-select {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-family: var(--body);
+    font-size: 1rem;
+    color: var(--charcoal);
+    background: var(--soft-white);
+    border: 1px solid var(--rule-soft);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+  .form-input:focus, .form-textarea:focus, .form-select:focus {
+    outline: none;
+    border-color: var(--moss);
+    box-shadow: 0 0 0 3px rgba(86, 104, 79, 0.15);
+    background: var(--cream);
+  }
+  .form-input.invalid, .form-textarea.invalid, .form-select.invalid {
+    border-color: var(--rust);
+    box-shadow: 0 0 0 3px rgba(138, 79, 60, 0.10);
+  }
+  .form-textarea { min-height: 160px; resize: vertical; line-height: 1.6; }
+  .form-helper {
+    font-size: 0.88rem;
+    color: var(--sage);
+    margin-top: 0.5rem;
+    max-width: none;
+  }
+  .form-error {
+    display: none;
+    font-size: 0.85rem;
+    color: var(--rust);
+    margin-top: 0.4rem;
+    font-style: italic;
+  }
+  .form-group.has-error .form-error { display: block; }
+
+  /* Consent checkbox */
+  .form-consent { margin-top: 0.5rem; margin-bottom: 1.5rem; }
+  .consent-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    cursor: pointer;
+    padding: 1rem 1.1rem;
+    border: 1px solid var(--rule-soft);
+    border-radius: 6px;
+    background: var(--cream);
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+  .consent-label:hover { border-color: var(--rule); }
+  .form-consent.has-error .consent-label {
+    border-color: var(--rust);
+    background: rgba(138, 79, 60, 0.04);
+  }
+  .form-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin: 0;
+    margin-top: 0.15rem;
+    border: 1.5px solid var(--rule);
+    border-radius: 4px;
+    background: var(--soft-white);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.18s ease;
+  }
+  .form-checkbox:hover { border-color: var(--moss); }
+  .form-checkbox:focus-visible {
+    outline: none;
+    border-color: var(--moss);
+    box-shadow: 0 0 0 3px rgba(86, 104, 79, 0.2);
+  }
+  .form-checkbox:checked {
+    background: var(--moss);
+    border-color: var(--moss);
+  }
+  .form-checkbox:checked::after {
+    content: "";
+    position: absolute;
+    left: 5px; top: 1px;
+    width: 6px; height: 11px;
+    border-right: 2px solid var(--soft-white);
+    border-bottom: 2px solid var(--soft-white);
+    transform: rotate(45deg);
+  }
+  .consent-text {
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--charcoal);
+  }
+  .consent-text a {
+    color: var(--moss);
+    text-decoration: underline;
+    text-decoration-color: rgba(86, 104, 79, 0.35);
+    text-underline-offset: 3px;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  }
+  .consent-text a:hover {
+    color: var(--moss-deep);
+    text-decoration-color: var(--moss-deep);
+  }
+  .form-submit-row { margin-top: 2rem; text-align: center; }
+  .form-privacy {
+    font-size: 0.88rem;
+    color: var(--sage);
+    text-align: center;
+    margin-top: 1.5rem;
+    max-width: 52ch;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+  }
+
+  /* Success state */
+  .form-success {
+    display: none;
+    max-width: 720px;
+    margin: 0 auto;
+    background: var(--cream);
+    padding: 3.5rem 3rem;
+    border-radius: 6px;
+    border: 1px solid var(--rule-soft);
+    text-align: center;
+  }
+  .form-success.shown { display: block; animation: fadeInUp 0.6s ease; }
+  .form-success .seal {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--moss);
+    color: var(--cream);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    font-family: var(--display);
+    font-style: italic;
+    font-size: 1.6rem;
+    font-variation-settings: "SOFT" 100, "WONK" 1;
+  }
+  .form-success h3 {
+    font-size: 2rem;
+    font-style: italic;
+    margin-bottom: 1.25rem;
+    font-variation-settings: "SOFT" 80, "WONK" 1;
+  }
+  .form-success p { margin: 0 auto 1.25rem; max-width: 50ch; }
+
+  .after { background: var(--cream); }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="home.html" class="logo">Works <span class="by">by</span> Love</a>
+    <ul class="nav-links">
+      <li><a href="home.html#audience">The Work</a></li>
+      <li><a href="about.html">About Edie</a></li>
+      <li><a href="pricing.html">Sessions</a></li>
+      <li><a href="faq.html">Questions</a></li>
+      <li><a href="contact.html" class="nav-cta">Reach Edie</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <span class="eyebrow centered">Contact</span>
+    <h1>Reach <span class="accent-italic">Edie.</span></h1>
+    <p class="hero-sub">Start by sending a short message. Edie reads every one herself, and replies with a link to book your fifteen-minute introduction by phone. There is no charge for that call, and no commitment to book a session afterward.</p>
+  </div>
+</header>
+
+<section class="options">
+  <div class="container">
+    <div class="options-grid">
+      <div class="option-card">
+        <svg class="option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.13.96.37 1.9.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+        <h3>Call directly</h3>
+        <p>If a phone call feels right, this is the fastest way.</p>
+        <a href="tel:9015983343" class="option-action">901.598.3343</a>
+      </div>
+
+      <div class="option-card">
+        <svg class="option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+          <line x1="16" y1="2" x2="16" y2="6"/>
+          <line x1="8" y1="2" x2="8" y2="6"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+        </svg>
+        <h3>Book an introduction</h3>
+        <p>Send a short message first. Edie will reply with a link to schedule the fifteen-minute call.</p>
+        <a href="#message-form" class="option-action">Start with a message ↓</a>
+      </div>
+
+      <div class="option-card">
+        <svg class="option-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+        </svg>
+        <h3>Send a message</h3>
+        <p>If a phone call feels like too much right now, write here instead.</p>
+        <a href="#message-form" class="option-action">Go to the form ↓</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="form-section" id="message-form">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow centered">Step one</span>
+      <h2 style="margin-top: 1rem;">Tell Edie a little <em class="soft">about yourself.</em></h2>
+      <p>Your name and contact details, and — if you're up for it — a sentence or two about what brings you here. Edie will reply with a link to book the fifteen-minute introduction.</p>
+    </div>
+
+    <form class="contact-form" id="cf" novalidate>
+      <div class="form-row">
+        <div class="form-group" data-field="firstName">
+          <label for="firstName" class="form-label">First name</label>
+          <input type="text" id="firstName" name="firstName" class="form-input" placeholder="e.g. Sarah" autocomplete="given-name" required>
+          <p class="form-error">Please share your first name.</p>
+        </div>
+        <div class="form-group" data-field="lastName">
+          <label for="lastName" class="form-label">Last name</label>
+          <input type="text" id="lastName" name="lastName" class="form-input" placeholder="e.g. Whitfield" autocomplete="family-name" required>
+          <p class="form-error">Please share your last name.</p>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group" data-field="email">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="you@example.com" autocomplete="email" required>
+          <p class="form-error">Please enter a valid email.</p>
+        </div>
+        <div class="form-group" data-field="phone">
+          <label for="phone" class="form-label">Phone number</label>
+          <input type="tel" id="phone" name="phone" class="form-input" placeholder="(901) 555-0123" autocomplete="tel" required>
+          <p class="form-error">Please enter a phone number.</p>
+        </div>
+      </div>
+
+      <div class="form-group" data-field="topic">
+        <label for="topic" class="form-label">What brought you here?</label>
+        <select id="topic" name="topic" class="form-select" required>
+          <option value="">Choose one</option>
+          <option>After a death</option>
+          <option>After a divorce or separation</option>
+          <option>An estranged relationship</option>
+          <option>The house has gotten away from me</option>
+          <option>Something else</option>
+        </select>
+        <p class="form-error">Please choose one.</p>
+      </div>
+
+      <div class="form-group" data-field="message">
+        <label for="message" class="form-label">Your message</label>
+        <textarea id="message" name="message" class="form-textarea" placeholder="A sentence or two is plenty. You can say as little or as much as feels right." required></textarea>
+        <p class="form-helper">Just say what is on your mind. You do not have to explain anything in advance.</p>
+        <p class="form-error">A few words is enough. Even one sentence.</p>
+      </div>
+
+      <div class="form-group form-consent" data-field="consent">
+        <label class="consent-label">
+          <input type="checkbox" id="consent" name="consent" class="form-checkbox" required>
+          <span class="consent-text">I have read and agree to the <a href="privacy.html">privacy policy</a>. I understand my message will be received only by Edie and never shared.</span>
+        </label>
+        <p class="form-error">Please confirm before sending.</p>
+      </div>
+
+      <div class="form-submit-row">
+        <button type="submit" class="btn btn-primary" id="cf-submit">
+          Send &amp; continue to booking <span class="btn-arrow">→</span>
+        </button>
+      </div>
+    </form>
+
+    <div class="form-success" id="cf-success" role="status" aria-live="polite">
+      <div class="seal">✓</div>
+      <h3>Message received.</h3>
+      <p>Thank you for sharing that. The next step is to choose a time for your fifteen-minute introduction by phone — no charge, no commitment.</p>
+      <p>If your selected time doesn't work, Edie will follow up by email to find one that does.</p>
+      <p style="margin-top: 1.75rem;">
+        <a href="#" class="btn btn-primary">Book your introduction <span class="btn-arrow">→</span></a>
+      </p>
+      <p style="margin-top: 1.25rem; font-size: 0.92rem; color: var(--sage);">Or wait to hear from Edie directly — she replies within a day or two.</p>
+    </div>
+  </div>
+</section>
+
+<section class="after">
+  <div class="container">
+    <div class="slab">
+      <div>
+        <span class="eyebrow">After you reach out</span>
+        <h2 style="margin-top: 1rem;">Edie reads every message <em class="soft">herself.</em></h2>
+      </div>
+      <div class="slab-body">
+        <p>She replies as soon as she can. The first reply is usually an offer to schedule the fifteen-minute introduction call by phone. There is no charge for that call, and no commitment to book a session afterward.</p>
+        <p>If you would rather not get on the phone yet, that is fine. The conversation can stay here, by message, until you are ready.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="home.html" class="logo">Works <span class="by">by</span> Love</a>
+        <p>Grief counseling with a practical application. In your home in Memphis, or on Zoom anywhere in North America.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="home.html#audience">The Work</a></li>
+          <li><a href="about.html">About Edie</a></li>
+          <li><a href="pricing.html">Sessions</a></li>
+          <li><a href="faq.html">Questions</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Reach Edie</h4>
+        <ul>
+          <li><a href="tel:9015983343">901.598.3343</a></li>
+          <li><a href="contact.html">Book a 15-minute introduction</a></li>
+          <li><a href="#message-form">Send a message</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <span>© 2026 Works by Love · Edith Love</span>
+      <span>Memphis, Tennessee · <a href="privacy.html">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Form validation + success state
+  const form = document.getElementById('cf');
+  const successEl = document.getElementById('cf-success');
+  const fields = {
+    firstName: document.getElementById('firstName'),
+    lastName: document.getElementById('lastName'),
+    email: document.getElementById('email'),
+    phone: document.getElementById('phone'),
+    topic: document.getElementById('topic'),
+    message: document.getElementById('message'),
+    consent: document.getElementById('consent')
+  };
+  function validateField(key) {
+    const el = fields[key];
+    const group = form.querySelector(`[data-field="${key}"]`);
+    let ok;
+    if (key === 'consent') {
+      ok = el.checked;
+    } else {
+      ok = el.value.trim().length > 0;
+      if (key === 'email') {
+        ok = ok && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim());
+      }
+      if (key === 'phone') {
+        ok = ok && /[\d]{7,}/.test(el.value.replace(/\D/g, ''));
+      }
+      if (key === 'message') {
+        ok = el.value.trim().length >= 2;
+      }
+    }
+    if (ok) {
+      group.classList.remove('has-error');
+      el.classList.remove('invalid');
+    } else {
+      group.classList.add('has-error');
+      el.classList.add('invalid');
+    }
+    return ok;
+  }
+  Object.keys(fields).forEach((k) => {
+    const evt = (k === 'consent' || k === 'topic') ? 'change' : 'blur';
+    fields[k].addEventListener(evt, () => validateField(k));
+    fields[k].addEventListener('input', () => {
+      if (form.querySelector(`[data-field="${k}"]`).classList.contains('has-error')) validateField(k);
+    });
+  });
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const allOk = Object.keys(fields).map(validateField).every(Boolean);
+    if (!allOk) {
+      const firstBad = form.querySelector('.has-error .form-input, .has-error .form-textarea, .has-error .form-select, .has-error .form-checkbox');
+      if (firstBad) firstBad.focus();
+      return;
+    }
+    form.style.display = 'none';
+    successEl.classList.add('shown');
+    const y = successEl.getBoundingClientRect().top + window.scrollY - 100;
+    window.scrollTo({ top: y, behavior: 'smooth' });
+  });
+</script>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="assets/tweaks-panel.jsx"></script>
+<script type="text/babel" src="assets/tweaks-app.jsx"></script>
+
+</body>
+</html>

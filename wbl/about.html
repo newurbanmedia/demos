@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Edie — Works by Love</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..700&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..600&family=Inter:wght@400;500;600&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css?v=2">
+<style>
+  .hero { padding: 7rem 0 5rem; }
+  .hero-grid {
+    display: grid; grid-template-columns: 1.05fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; gap: 3rem; } }
+  .hero .eyebrow { display: inline-flex; margin-bottom: 1.5rem; }
+  .hero h1 { margin-bottom: 1.75rem; }
+  .hero-sub {
+    font-size: 1.2rem;
+    color: var(--charcoal);
+    margin-bottom: 2.5rem;
+    max-width: 50ch;
+    line-height: 1.55;
+  }
+  .edie-photo {
+    aspect-ratio: 4/5;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    background: var(--soft-white);
+  }
+  .edie-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 35%;
+    display: block;
+    filter: contrast(1.02) brightness(1.0);
+  }
+  .edie-photo .nature-tag {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(244, 239, 229, 0.85);
+    border: 1px solid rgba(244, 239, 229, 0.45);
+    padding: 0.35rem 0.55rem;
+    border-radius: 2px;
+    background: rgba(19, 30, 23, 0.32);
+    backdrop-filter: blur(2px);
+  }
+
+  /* CREDIT/FACTS STRIP */
+  .facts {
+    background: var(--soft-white);
+    border-top: 1px solid var(--rule-soft);
+    border-bottom: 1px solid var(--rule-soft);
+    padding: 3.25rem 0;
+  }
+  .facts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule-soft);
+    border: 1px solid var(--rule-soft);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  @media (max-width: 800px) { .facts-grid { grid-template-columns: repeat(2, 1fr); } }
+  .fact {
+    background: var(--soft-white);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .fact .label {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--slate);
+    margin-bottom: 1rem;
+  }
+  .fact .value {
+    font-family: var(--display);
+    color: var(--forest);
+    font-style: italic;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    font-variation-settings: "SOFT" 80, "WONK" 1, "opsz" 80;
+    font-weight: 400;
+  }
+
+  .narrative-alt { background: var(--soft-white); border-top: 1px solid var(--rule-soft); border-bottom: 1px solid var(--rule-soft); }
+  .narrative { background: var(--cream); }
+
+  .inside-out-body { max-width: 60ch; margin: 2rem 0 3.5rem; }
+  .inside-out-body p { font-size: 1.075rem; margin-bottom: 1.4rem; }
+  .inside-out-quote {
+    font-family: var(--display);
+    font-style: italic;
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+    line-height: 1.32;
+    color: var(--cream);
+    border-left: 3px solid var(--rust);
+    padding-left: 2rem;
+    max-width: 32ch;
+    font-variation-settings: "SOFT" 100, "opsz" 80;
+  }
+  .inside-out-quote cite {
+    display: block;
+    font-style: normal;
+    font-family: var(--body);
+    font-size: 0.74rem;
+    color: var(--sage-light);
+    margin-top: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 0.24em;
+    font-weight: 600;
+  }
+
+  .cta-section { text-align: center; }
+  .cta-inner { max-width: 720px; margin: 0 auto; position: relative; z-index: 1; }
+  .cta-section h2 { margin: 1.25rem 0 1.5rem; }
+  .cta-section p { font-size: 1.125rem; margin: 0 auto 2.5rem; max-width: 54ch; }
+  .cta-options { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="home.html" class="logo">Works <span class="by">by</span> Love</a>
+    <ul class="nav-links">
+      <li><a href="home.html#audience">The Work</a></li>
+      <li><a href="about.html" class="current">About Edie</a></li>
+      <li><a href="pricing.html">Sessions</a></li>
+      <li><a href="faq.html">Questions</a></li>
+      <li><a href="contact.html" class="nav-cta">Reach Edie</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-text reveal">
+        <span class="eyebrow">About</span>
+        <h1>Edie <span class="accent-italic">Love.</span></h1>
+        <p class="hero-sub">Edie is an ordained minister in the Unitarian Universalist tradition. She holds a Master of Divinity. She has spent years sitting with people in grief, and she has done this work in her own life.</p>
+        <a href="contact.html" class="btn btn-primary">Reach Edie <span class="btn-arrow">→</span></a>
+      </div>
+      <div class="edie-photo reveal delay-2">
+        <img src="assets/edie-mountain.jpg" alt="Edie Love smiling on a mountain ridge">
+        <span class="nature-tag">Photo · Edie</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="facts">
+  <div class="container">
+    <div class="facts-grid">
+      <div class="fact">
+        <div class="label">Tradition</div>
+        <div class="value">Unitarian<br>Universalist</div>
+      </div>
+      <div class="fact">
+        <div class="label">Degree</div>
+        <div class="value">Master of<br>Divinity</div>
+      </div>
+      <div class="fact">
+        <div class="label">Based in</div>
+        <div class="value">Memphis,<br>Tennessee</div>
+      </div>
+      <div class="fact">
+        <div class="label">Works with</div>
+        <div class="value">Clients across<br>North America</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="narrative-alt">
+  <div class="container">
+    <div class="slab">
+      <div>
+        <span class="eyebrow">Credentials</span>
+        <h2 style="margin-top: 1rem;">Ordained, with a <em class="soft">Master of Divinity.</em></h2>
+      </div>
+      <div class="slab-body">
+        <p>Edie holds a Master of Divinity, the standard graduate degree for ministry. She was ordained in the Unitarian Universalist tradition.</p>
+        <p>Unitarian Universalism welcomes people of any faith or none. The work does not require any particular belief, and Edie does not bring religion into a session unless you bring it first.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="narrative">
+  <div class="container">
+    <div class="slab">
+      <div>
+        <span class="eyebrow">How she came to this work</span>
+        <h2 style="margin-top: 1rem;">Years of sitting with people <em class="soft">in grief.</em></h2>
+      </div>
+      <div class="slab-body">
+        <p>Edie has spent years sitting with people in some of the hardest weeks of their lives. After a death. Before one. After a marriage ended. After an estrangement. After a diagnosis.</p>
+        <p>People kept asking if she could come over and help with the house. The clothes after a husband died. The shelves of a parent's home before a move. The room of a child who was no longer here.</p>
+        <p>Over time it became its own work. Now it is what she does full time, with people in Memphis and across North America.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section inside-out">
+  <div class="container">
+    <div style="display:grid; grid-template-columns: 1.5fr 1fr; gap: 5rem; align-items: start;" class="io-grid">
+      <div>
+        <span class="eyebrow">From the inside out</span>
+        <h2 style="margin-top: 1.25rem;">Edie has done this work <em class="soft">in her own life.</em></h2>
+        <div class="inside-out-body">
+          <p>Edie grew up in a family of people who held onto things. Her mother. Her grandmother. Her father. Three generations.</p>
+          <p>She has struggled with the pattern herself as an adult. She has known what it is to look at a room and not know where to start. She has known the shame of letting a house get away from her. She has known what it is to not invite anyone over.</p>
+          <p>She has also done the work to move through it. That is part of why she can sit with you in it. She is not on the outside looking in.</p>
+        </div>
+        <blockquote class="inside-out-quote">
+          I know it from the inside out. I know how it feels to be overwhelmed and surrounded by stuff and not know what needs to happen or how to move forward.
+          <cite>— Edie</cite>
+        </blockquote>
+      </div>
+      <div id="io-image" style="margin-top: 4rem;"></div>
+    </div>
+  </div>
+</section>
+
+<section class="narrative">
+  <div class="container">
+    <div class="slab">
+      <div>
+        <span class="eyebrow">How she works with you</span>
+        <h2 style="margin-top: 1rem;">A conversation. A gentle nag. <em class="soft">Decisions made now.</em></h2>
+      </div>
+      <div class="slab-body">
+        <p>Sessions are not lectures, and they are not therapy. They are conversations with the objects in front of you.</p>
+        <p>Edie asks specific questions about a closet, a box, a room, or a decision. The questions are about your life, not generic prompts.</p>
+        <p>When grief or feeling comes up, she stays with it. She does not push past it. She also does not let the conversation drift away from a decision. Most people get stuck by letting the decision wait. Edie does not let it wait. She has called herself "a gentle nag," and that is a fair description of what she does in the room.</p>
+        <p>You decide every time. Nothing leaves your home without your call. Nothing changes without your say-so. She does not photograph anything. She does not invite anyone in. She does not bring an agenda.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <span class="eyebrow centered">When you are ready</span>
+      <h2>Reach out.</h2>
+      <p>The first conversation is a fifteen-minute introduction by phone. No charge, no commitment to book a session. You can start by saying you read this page.</p>
+      <div class="cta-options">
+        <a href="tel:9015983343" class="btn btn-light">Call 901.598.3343</a>
+        <a href="contact.html" class="btn btn-outline-light">Send a message <span class="btn-arrow">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="home.html" class="logo">Works <span class="by">by</span> Love</a>
+        <p>Grief counseling with a practical application. In your home in Memphis, or on Zoom anywhere in North America.</p>
+      </div>
+      <div>
+        <h4>Site</h4>
+        <ul>
+          <li><a href="home.html#audience">The Work</a></li>
+          <li><a href="about.html">About Edie</a></li>
+          <li><a href="pricing.html">Sessions</a></li>
+          <li><a href="faq.html">Questions</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Reach Edie</h4>
+        <ul>
+          <li><a href="tel:9015983343">901.598.3343</a></li>
+          <li><a href="contact.html">Book a 15-minute introduction</a></li>
+          <li><a href="contact.html#message-form">Send a message</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom container">
+      <span>© 2026 Works by Love · Edith Love</span>
+      <span>Memphis, Tennessee · <a href="privacy.html">Privacy</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/nature-scenes.js"></script>
+<script>
+  document.getElementById('io-image').innerHTML = NatureScenes.branch({
+    tag: "Detail \u2014 placeholder",
+    caption: "Bare branch, late winter"
+  });
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+</script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script type="text/babel" src="assets/tweaks-panel.jsx"></script>
+<script type="text/babel" src="assets/tweaks-app.jsx"></script>
+
+</body>
+</html>
